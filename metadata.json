@@ -1,6 +1,6 @@
 {
-  "name": "Remix: Notes Maker",
-  "description": "A beautiful, responsive note-taking and checklist app with categorized folders, instant search, tagging, custom colors, offline persistence, and smart AI summarization.",
+  "name": "NEONOTE Pro Workspace",
+  "description": "A beautiful, responsive note-taking and checklist app with categorized folders, instant search, tagging, custom colors, and offline persistence.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

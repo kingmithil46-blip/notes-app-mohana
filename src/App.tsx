@@ -242,13 +242,13 @@ export default function App() {
   const activeNote = notes.find((n) => n.id === activeNoteId);
 
   return (
-    <div className="flex h-screen bg-[#FAF7F2] overflow-hidden font-sans text-slate-800" id="main-application-frame">
+    <div className="flex h-screen bg-[#030712] overflow-hidden font-sans text-slate-100" id="main-application-frame">
       
-      {/* 1. Mobile Slid out/Overlay Drawer Backdrop */}
+      {/* 1. Mobile Slide out/Overlay Drawer Backdrop */}
       {isSidebarOpen && (
         <div
           onClick={() => setIsSidebarOpen(false)}
-          className="md:hidden fixed inset-0 bg-slate-950/40 backdrop-blur-xs z-40 transition-opacity"
+          className="md:hidden fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-40 transition-opacity"
         />
       )}
 
@@ -256,7 +256,7 @@ export default function App() {
       <div
         className={`fixed md:sticky md:top-0 inset-y-0 left-0 transform md:transform-none ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 w-80 h-full z-50 bg-[#3F000B] transition-transform duration-300 ease-in-out shrink-0`}
+        } md:translate-x-0 w-80 h-full z-50 bg-[#050811] transition-transform duration-300 ease-in-out shrink-0`}
       >
         <Sidebar
           currentFolder={currentFolder}
@@ -270,25 +270,25 @@ export default function App() {
       </div>
 
       {/* 3. Notes Ledger list & writing canvas display area */}
-      <div className="flex-1 flex flex-col h-full min-w-0">
+      <div className="flex-1 flex flex-col h-full min-w-0 bg-[#030712]">
         
         {/* Workspace Toolbar Header */}
-        <header className="h-[65px] bg-[#F4EAD4] border-b border-[#D4AF37] px-4 md:px-6 flex items-center justify-between shrink-0">
+        <header className="h-[65px] bg-[#02050b] border-b border-slate-900 px-4 md:px-6 flex items-center justify-between shrink-0 shadow-[0_4px_16px_rgba(0,0,0,0.4)]">
           <div className="flex items-center space-x-3">
             {/* Burger Menu on Mobile layout */}
             <button
               onClick={() => setIsSidebarOpen(true)}
-              className="md:hidden p-2 hover:bg-amber-100 border border-amber-300 rounded-xl text-[#3F000B] cursor-pointer"
+              className="md:hidden p-2 hover:bg-slate-900 border border-slate-800 rounded-xl text-slate-200 cursor-pointer transition-colors"
               title="Open Navigation"
             >
-              <Menu className="w-5 h-5" />
+              <Menu className="w-5 h-5 text-purple-400" />
             </button>
             <div className="flex items-center space-x-2.5">
-              <span className="font-display font-bold text-[17px] text-[#3F000B] tracking-tight">
-                {selectedTag ? `#${selectedTag}` : currentFolder === "all" ? "All Documents" : currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1)}
+              <span className="font-display font-bold text-[17px] text-white tracking-tight text-shadow-[0_0_10px_rgba(168,85,247,0.3)]">
+                {selectedTag ? `#${selectedTag}` : currentFolder === "all" ? "All Documents" : currentFolder.toUpperCase()}
               </span>
-              <span className="text-[10px] font-mono text-amber-900 font-bold bg-[#FAF2DC] py-0.5 px-2.5 rounded-full border border-[#D4AF37]/30">
-                {filteredNotes.length} documents
+              <span className="text-[10px] font-mono text-[#00f5ff] font-bold bg-[#00f5ff]/10 py-1 px-3 rounded-full border border-cyan-500/20 shadow-[0_0_8px_rgba(0,245,255,0.15)]">
+                {filteredNotes.length} index sheets
               </span>
             </div>
           </div>
@@ -296,7 +296,7 @@ export default function App() {
           {/* Quick Create Button header */}
           <button
             onClick={handleAddNote}
-            className="md:hidden h-9 w-9 bg-[#5C0612] hover:bg-[#720917] text-white rounded-lg flex items-center justify-center cursor-pointer shadow-xs"
+            className="md:hidden h-9 w-9 bg-gradient-to-r from-purple-600 to-pink-600 hover:shadow-[0_0_12px_rgba(219,39,119,0.4)] border border-pink-500/20 text-white rounded-lg flex items-center justify-center cursor-pointer transition-all transform active:scale-95"
             title="Create general markdown draft"
           >
             <Plus className="w-4 h-4" />
@@ -307,10 +307,10 @@ export default function App() {
         <div className="flex-1 flex overflow-hidden relative">
           
           {/* Notes Card Deck listing (Left pane) */}
-          <div className="flex-1 flex flex-col h-full bg-[#FAF7F2] overflow-y-auto p-4 md:p-6 space-y-5" id="notes-grid-ledger">
+          <div className="flex-1 flex flex-col h-full bg-[#030712] overflow-y-auto p-4 md:p-6 space-y-5 bg-dot-matrix" id="notes-grid-ledger">
             {/* Search Input bar */}
             <div className="relative">
-              <span className="absolute inset-y-0 left-3.5 flex items-center pr-2 pointer-events-none text-amber-800">
+              <span className="absolute inset-y-0 left-3.5 flex items-center pr-2 pointer-events-none text-slate-500">
                 <Search className="w-4 h-4" />
               </span>
               <input
@@ -318,12 +318,12 @@ export default function App() {
                 placeholder="Lookup headers, paragraphs, or tag filters..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#E5C158] hover:border-[#D4AF37] rounded-xl text-[#3F000B] placeholder-amber-800/40 outline-none focus:border-[#5C0612] focus:ring-1 focus:ring-[#5C0612] transition-all text-xs font-sans font-semibold shadow-xs"
+                className="w-full pl-10 pr-10 py-2.5 bg-[#0c101b] border border-slate-900 hover:border-slate-800 rounded-xl text-slate-100 placeholder-slate-700 outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/20 transition-all text-xs font-sans font-semibold hover:shadow-[0_0_10px_rgba(255,255,255,0.02)]"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3.5 top-3 w-5 h-5 flex items-center justify-center rounded-full bg-amber-50 hover:bg-amber-100 font-sans text-[10px] text-amber-900 font-bold"
+                  className="absolute right-3.5 top-2.5 w-5 h-5 flex items-center justify-center rounded-lg bg-slate-950 border border-slate-800 font-sans text-[9px] text-slate-400 hover:text-white cursor-pointer hover:bg-slate-900 transition-colors"
                 >
                   ✕
                 </button>
@@ -333,11 +333,11 @@ export default function App() {
             {/* Empty ledger state */}
             {sortedNotes.length === 0 ? (
               <div id="notes-empty-state-card" className="flex-1 flex flex-col items-center justify-center py-16 px-4 text-center max-w-md mx-auto space-y-4">
-                <div className="w-16 h-16 rounded-2xl bg-[#F4EAD4] flex items-center justify-center border border-[#D4AF37] text-amber-900 shadow-[0_4px_12px_rgba(92,6,18,0.03)]">
-                  <FolderSearch className="w-8 h-8 text-[#5C0612]" />
+                <div className="w-16 h-16 rounded-2xl bg-[#0c101b]/90 flex items-center justify-center border border-slate-900/65 text-slate-400 shadow-[0_0_15px_rgba(0,0,0,0.6)]">
+                  <FolderSearch className="w-8 h-8 text-purple-400 animate-pulse" />
                 </div>
                 <div className="space-y-1.5 flex flex-col items-center">
-                  <h3 className="font-display font-semibold tracking-tight text-slate-900 text-sm md:text-base">No documents drafted</h3>
+                  <h3 className="font-display font-bold tracking-tight text-white text-sm md:text-base">No documents drafted</h3>
                   <p className="text-slate-500 text-xs leading-relaxed font-sans font-medium px-4">
                     {searchQuery ? "We couldn't find matching words inside titles or tag structures. Try clearing search descriptors." : "This workspace folder is currently clean. Start drafting your first document sheet right now."}
                   </p>
@@ -345,7 +345,7 @@ export default function App() {
                 {!searchQuery && (
                   <button
                     onClick={handleAddNote}
-                    className="inline-flex items-center space-x-2 bg-[#5C0612] hover:bg-[#720917] text-white font-bold py-2.5 px-4 rounded-xl text-xs shadow-md shadow-[#5C0612]/10 transition-colors cursor-pointer"
+                    className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 hover:shadow-[0_0_15px_rgba(168,85,247,0.35)] text-white font-bold py-2.5 px-4 rounded-xl text-xs border border-purple-500/20 transition-all cursor-pointer transform active:scale-97"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     <span>Create Onboarding Note</span>
@@ -378,7 +378,7 @@ export default function App() {
           {/* Active Note Editor workspace (Right pane / responsive drawer) */}
           {activeNote ? (
             <div
-              className={`fixed md:relative inset-0 md:inset-auto md:w-[620px] lg:w-[710px] xl:w-[810px] h-full z-45 bg-[#FAF7F2] border-l border-[#D4AF37] transition-all md:translate-x-0 ${
+              className={`fixed md:relative inset-0 md:inset-auto md:w-[620px] lg:w-[710px] xl:w-[810px] h-full z-45 bg-[#030712] border-l border-slate-905 border-slate-900/80 transition-all md:translate-x-0 ${
                 activeNoteId ? "translate-x-0" : "translate-x-full"
               }`}
               id="active-editor-pane"
@@ -393,13 +393,13 @@ export default function App() {
             </div>
           ) : (
             /* Selected state empty wrapper indicator on desktop */
-            <div className="hidden md:flex flex-1 md:w-[620px] lg:w-[710px] xl:w-[810px] flex-col items-center justify-center p-8 bg-[#FAF7F2] border-l border-[#D4AF37]/40 text-center space-y-4">
-              <div className="w-16 h-16 rounded-2xl bg-[#F4EAD4] border border-[#D4AF37] flex flex-col items-center justify-center text-amber-700 shadow-[0_4px_12px_rgba(92,6,18,0.02)]">
-                <BookOpen className="w-6.5 h-6.5 text-[#5C0612]" />
+            <div className="hidden md:flex flex-1 md:w-[620px] lg:w-[710px] xl:w-[810px] flex-col items-center justify-center p-8 bg-[#030712] border-l border-slate-900 text-center space-y-4">
+              <div className="w-16 h-16 rounded-2xl bg-[#0c101b] border border-slate-900 flex flex-col items-center justify-center text-slate-400 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                <BookOpen className="w-6.5 h-6.5 text-purple-400 animate-pulse text-neon-purple" />
               </div>
               <div className="space-y-1.5 max-w-sm">
-                <h3 className="font-display font-semibold text-slate-800 text-sm">Workspace Sheet Unselected</h3>
-                <p className="text-slate-400 text-xs leading-relaxed font-sans font-medium">
+                <h3 className="font-display font-semibold text-slate-200 text-sm">Workspace Sheet Unselected</h3>
+                <p className="text-slate-500 text-xs leading-relaxed font-sans font-medium">
                   Select an items card from your ledger directory or create a new document to start editorial drafting.
                 </p>
               </div>
